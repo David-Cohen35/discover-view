@@ -26,7 +26,6 @@ const DateRangePicker = ({ setStartDate, setEndDate, setData }) => {
 		const end = new Date(endDate).getTime();
 		return data.hits.hits.filter((d) => {
 			const timestamp = new Date(d._source.timestamp).getTime();
-			console.log(timestamp);
 			return timestamp >= start && timestamp <= end;
 		});
 	};
