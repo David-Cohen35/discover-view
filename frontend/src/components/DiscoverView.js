@@ -15,8 +15,10 @@ const DiscoverView = () => {
 				setEndDate={setEndDate}
 				setData={setData}
 			/>
-			<div className='border border-solid border-gray-500 m-2.5 p-1 rounded w-[800px]'>
-				<Graph data={data} />
+			<div className='border border-solid border-gray-500 m-2.5 p-1 rounded'>
+				<div className='flex justify-center'>
+					<Graph data={data} />
+				</div>
 				<Table data={data} />
 			</div>
 		</div>

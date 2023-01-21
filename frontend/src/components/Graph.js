@@ -92,7 +92,7 @@ export default function Graph({ data }) {
 	};
 
 	return (
-		<div className='pb-1'>
+		<div className='pb-1 w-[550px] justify-center'>
 			<p>Total number of hits: {totalHits}</p>
 			<Bar data={chartData} options={options} />
 		</div>
