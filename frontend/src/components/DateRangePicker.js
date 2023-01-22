@@ -6,17 +6,25 @@ import dayjs from "dayjs";
 
 const { RangePicker } = DatePicker;
 
-const DateRangePicker = ({ setStartDate, setEndDate, setData }) => {
+const DateRangePicker = ({ setStartDate, setEndDate, setData, setError }) => {
 	const [rawData, setRawData] = useState([]);
 	const currentDate = dayjs();
 	const startDate = dayjs(currentDate).startOf("month");
 
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_API_SERVICE_URL}/proxy`)
-			.then((response) => response.json())
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Failed to fetch data");
+				}
+				return response.json();
+			})
 			.then((data) => {
 				setRawData(data);
 				setData(filterDataByDateRange(data, startDate, currentDate));
+			})
+			.catch((error) => {
+				setError(error.message);
 			});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -44,9 +52,17 @@ const DateRangePicker = ({ setStartDate, setEndDate, setData }) => {
 
 	const handleClick = () => {
 		fetch(`${process.env.REACT_APP_API_SERVICE_URL}/proxy`)
-			.then((response) => response.json())
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Failed to fetch data");
+				}
+				return response.json();
+			})
 			.then((data) => {
 				setRawData(data);
+			})
+			.catch((error) => {
+				setError(error.message);
 			});
 	};
 
