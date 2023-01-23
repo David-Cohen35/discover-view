@@ -1,9 +1,8 @@
-import "./App.css";
 import DiscoverView from "./components/DiscoverView";
 
 function App() {
 	return (
-		<div className='App'>
+		<div className='text-center flex justify-center'>
 			<DiscoverView />
 		</div>
 	);
